@@ -35,15 +35,15 @@ def jump_over_numbers1(list):
     print('{} at pos {} jumps {}'.format(list[0], 1, jump))
 
     for i in range(len(list)):
-        if i < jump - 1:
-            continue
-        elif list[i] == 0:
-            result = -1
-            break
-        else:
+        if i == jump - 1:
             jump = list[i] + (i + 1)
-            print('{} at pos {} jumps {}'.format(list[i], i + 1, jump))
-            result += 1
+
+            if list[i] == 0:
+                result = -1
+                break
+            else:
+                result += 1
+                print('{} at pos {} jumps {}'.format(list[i], i + 1, jump))
 
     return result
 
@@ -56,6 +56,7 @@ def jump_over_numbers2(list):
     while pos < len(list):
         if list[pos] == 0:
             return -1
+        print('{} at pos {} jumps {}'.format(list[pos], pos + 1, pos + 1 + list[pos]))
         ans += 1
         pos += list[pos]
 

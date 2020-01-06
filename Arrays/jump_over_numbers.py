@@ -26,8 +26,7 @@ Computer the first jump, then iterate the array:
 ##############
 # Solution 1 #
 ##############
-
-def jump_over_numbers(list):
+def jump_over_numbers1(list):
     if list[0] == 0:
         return -1
 
@@ -48,14 +47,30 @@ def jump_over_numbers(list):
 
     return result
 
+##############
+# Solution 2 #
+##############
+def jump_over_numbers2(list):
+    pos = 0
+    ans = 0
+    while pos < len(list):
+        if list[pos] == 0:
+            return -1
+        ans += 1
+        pos += list[pos]
+
+    return ans
+
 ###########
 # Testing #
 ###########
 
 # Test 1
 # Correct result: 4
-print(jump_over_numbers([3, 4, 1, 2, 5, 6, 9, 0, 1, 2, 3, 1]))
+print(jump_over_numbers1([3, 4, 1, 2, 5, 6, 9, 0, 1, 2, 3, 1]))
+print(jump_over_numbers2([3, 4, 1, 2, 5, 6, 9, 0, 1, 2, 3, 1]))
 
 # Test 2
 # Correct result: -1
-print(jump_over_numbers([3, 4, 1, 4, 5, 6, 9, 0, 1, 2, 3, 1]))
+print(jump_over_numbers1([3, 4, 1, 4, 5, 6, 9, 0, 1, 2, 3, 1]))
+print(jump_over_numbers2([3, 4, 1, 4, 5, 6, 9, 0, 1, 2, 3, 1]))

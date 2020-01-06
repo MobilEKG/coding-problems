@@ -13,10 +13,16 @@ SAMPLE OUTPUT: 4
 Note: In the sample example you start at position 1, where the number is 3. Then you must jump to position 4, where the number is 2. After that you jump to position 6 where the number is 6. This will lead you to position 12, which is the last number in the list and has the value 1. From there you jump 1 position to the right and must stop. This is a total of 4 jumps.
 
 =========================================
-Computer the first jump, then iterate the array:
-- if current index less than (jump - 1), continue iteration;
-- if current value equals to 0, returns -1;
-- if current index equals to (jump - 1), recalculate jump distance and jump counter pluses one;
+Solution 1:
+Computer the first jump distance, then iterate the array:
+- if current index less than (jump distance - 1), continue iteration;
+- otherwise if current value equals to 0, returns -1;
+- otherwise recalculate jump distance and increase jump counter by one;
+
+    Time Complexity:    O(N)
+    Space Complexity:   O(1)
+
+Solution 2
 
     Time Complexity:    O(N)
     Space Complexity:   O(1)
@@ -28,22 +34,23 @@ Computer the first jump, then iterate the array:
 ##############
 def jump_over_numbers1(list):
     if list[0] == 0:
+        print('{} at pos {}'.format(list[0], 1))
         return -1
 
     result = 1
     jump = list[0] + 1
-    print('{} at pos {} jumps {}'.format(list[0], 1, jump))
+    print('{} at pos {} jumps to {}'.format(list[0], 1, jump))
 
     for i in range(len(list)):
         if i == jump - 1:
-            jump = list[i] + (i + 1)
-
             if list[i] == 0:
+                print('{} at pos {}'.format(list[i], i + 1))
                 result = -1
                 break
             else:
+                jump = list[i] + (i + 1)
                 result += 1
-                print('{} at pos {} jumps {}'.format(list[i], i + 1, jump))
+                print('{} at pos {} jumps to {}'.format(list[i], i + 1, jump))
 
     return result
 
@@ -55,8 +62,10 @@ def jump_over_numbers2(list):
     ans = 0
     while pos < len(list):
         if list[pos] == 0:
+            print('{} at pos {}'.format(list[pos], pos + 1))
             return -1
-        print('{} at pos {} jumps {}'.format(list[pos], pos + 1, pos + 1 + list[pos]))
+
+        print('{} at pos {} jumps to {}'.format(list[pos], pos + 1, pos + 1 + list[pos]))
         ans += 1
         pos += list[pos]
 
@@ -75,3 +84,8 @@ print(jump_over_numbers2([3, 4, 1, 2, 5, 6, 9, 0, 1, 2, 3, 1]))
 # Correct result: -1
 print(jump_over_numbers1([3, 4, 1, 4, 5, 6, 9, 0, 1, 2, 3, 1]))
 print(jump_over_numbers2([3, 4, 1, 4, 5, 6, 9, 0, 1, 2, 3, 1]))
+
+# Test 3
+# Correct result: -1
+print(jump_over_numbers1([0, 4, 1, 4, 5, 6, 9, 0, 1, 2, 3, 1]))
+print(jump_over_numbers2([0, 4, 1, 4, 5, 6, 9, 0, 1, 2, 3, 1]))

@@ -26,7 +26,7 @@ Solution
 ############
 
 def maximum_completed_tasks(n, t, task_difficulties):
-    task_difficulties.sort() # O(n*log(n))
+    task_difficulties.sort() # O(n*log(n)), could use counting sort, O(n + k)
 
     if task_difficulties[0] <= t:
         time_used = task_difficulties[0]

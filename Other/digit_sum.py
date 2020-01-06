@@ -28,9 +28,6 @@ Simple solution, mod 10 to find all digits.
 ############
 
 def digit_sum(number):
-    if number == 0:
-        return 0
-
     x = abs(number)
 
     res = 0

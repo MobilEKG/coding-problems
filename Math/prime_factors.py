@@ -44,6 +44,20 @@ def prime_factors(n):
 
     return factors
 
+def prime_factors_2(n):
+    import math
+
+    factors = []
+
+    for i in range(2, int(math.ceil(math.sqrt(n)))): # int(math.ceil(5.4)) => 6
+        while n % i == 0:
+            factors.append(i)
+            n = n // i
+
+    if (n != 1):
+        factors.append(n)
+
+    return factors
 
 ###########
 # Testing #
@@ -52,11 +66,14 @@ def prime_factors(n):
 # Test 1
 # Correct result => [2, 3, 7]
 print(prime_factors(42))
+print(prime_factors_2(42))
 
 # Test 2
 # Correct result => [2, 2, 2, 2, 2, 2, 5, 5, 5, 5, 5, 5]
 print(prime_factors(10**6))
+print(prime_factors_2(10**6))
 
 # Test 3
 # Correct result => [127, 9721]
 print(prime_factors(1234567))
+print(prime_factors_2(1234567))

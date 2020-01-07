@@ -3,7 +3,7 @@ Find pairs with sum K
 
 Given an array, find all pairs which sum is equal to K.
 
-Input: [1, 2, 3, 4, 5, 5, 6, 7, 8, 9], 5
+Input: [1, 2, 3, 4, 5, 5, 6, 7, 8, 9], 10
 Output: [(1, 9), (2, 8), (3, 7), (4, 6), (5, 5)]
 
 =========================================

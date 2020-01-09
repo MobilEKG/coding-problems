@@ -118,7 +118,7 @@ def levelOrder(root: TreeNode) -> List[List[int]]:
 
         if (cur_node.level > current_level):
             current_level += 1
-            
+
             result.append(level_nodes)
             level_nodes = []
 

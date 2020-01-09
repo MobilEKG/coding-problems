@@ -4,7 +4,7 @@ Tree Traversal
 
 URL: https://charlesliuyx.github.io/2018/10/22/%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
 (【直观算法】二叉树遍历算法总结)
-
+URL: https://gist.github.com/thinkphp/1439668
 =========================================
 Solution
 
@@ -21,11 +21,12 @@ from typing import Dict, List
 
 # from tree_helpers import TreeNode
 class TreeNode:
-    def __init__(self, val, left=None, right=None):
+    def __init__(self, val, left=None, right=None, level=None):
         '''Definition for binary tree.'''
         self.val = val
         self.left = left
         self.right = right
+        self.level = level
 
 # Root, Left, Right
 def preorderTraversalRecursively(root: TreeNode) -> List[int]:
@@ -108,22 +109,30 @@ def postorderTraversal(root: TreeNode) -> List[int]:
 def levelOrder(root: TreeNode) -> List[List[int]]:
     if root is None: return []
 
+    root.level, current_level = 1, 1
     result, queue = [], deque([root])
-    while queue:
-        level_len = len(queue) # Record the queue length
-        level_nodes = [] # Record the nodes for each level
-        while level_len > 0: # 具体出队入队操作，保证本层所有节点的子节点都入队
-            cur_node = queue.popleft()
-            level_nodes.append(cur_node.val)
+    level_nodes = []  # Record the nodes for each level
 
-            if cur_node.left:
-                queue.append(cur_node.left)
-            if cur_node.right:
-                queue.append(cur_node.right)
-                
-            level_len -= 1
-        result.append(level_nodes)
-    
+    while len(queue) > 0:
+        cur_node = queue.popleft()
+
+        if (cur_node.level > current_level):
+            current_level += 1
+            
+            result.append(level_nodes)
+            level_nodes = []
+
+        level_nodes.append(cur_node.val)
+
+        if cur_node.left:
+            cur_node.left.level = current_level + 1
+            queue.append(cur_node.left)
+
+        if cur_node.right:
+            cur_node.right.level = current_level + 1
+            queue.append(cur_node.right)
+
+    result.append(level_nodes)
     return result
 
 ###########

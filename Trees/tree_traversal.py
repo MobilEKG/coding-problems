@@ -1,10 +1,9 @@
 
 """
-Traversal
+Tree Traversal
 
 URL: https://charlesliuyx.github.io/2018/10/22/%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
 (【直观算法】二叉树遍历算法总结)
-URL:
 
 =========================================
 Solution
@@ -66,14 +65,15 @@ def inorderTraversal(root: TreeNode) -> List[int]:
     if not root: return []
 
     result, stack = [], []
-
     while root or stack:
         if root:
             stack.append(root)
+
             root = root.left
         else:
             root = stack.pop()
             result.append(root.val)
+
             root = root.right
 
     return result
@@ -87,23 +87,22 @@ def postorderTraversalRecursively(root: TreeNode) -> List[int]:
         result += [root.val]
     return result
 
+# Almost the same as preorderTraversal()
 def postorderTraversal(root: TreeNode) -> List[int]:
     if root is None: return []
 
-    result, stack = [], [(root, False)]
-
+    result, stack = [], [root]
     while stack:
-        cur_node, visited = stack.pop()
-        if visited:  # 只有访问状态为True的节点才能被操作
-            result.append(cur_node.val)
-        else:
-            stack.append((cur_node, True))
-            if cur_node.right:
-                stack.append((cur_node.right, False))
-            if cur_node.left:
-                stack.append((cur_node.left, False))
+        cur_node = stack.pop()
+        result.append(cur_node.val)
 
-    return result
+        if cur_node.left:
+            stack.append(cur_node.left)
+
+        if cur_node.right:
+            stack.append(cur_node.right)
+
+    return result[::-1]
 
 # Breadth first
 def levelOrder(root: TreeNode) -> List[List[int]]:

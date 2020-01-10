@@ -1,6 +1,10 @@
 
 """
 Tree Traversal
+Pre-order: Root, Left, Right
+In-order: Left, Root, Right
+Post-order: Left, Right, Root
+Level-order(Breadth first):
 
 URL: https://charlesliuyx.github.io/2018/10/22/%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
 (【直观算法】二叉树遍历算法总结)
@@ -53,7 +57,7 @@ def preorderTraversal(root: TreeNode) -> List[int]:
             
     return result
 
-# Left -> Root -> Right
+# Left, Root, Right
 def inorderTraversalRecursively(root: TreeNode) -> List[int]:
     result = []
     if root:
@@ -88,7 +92,7 @@ def postorderTraversalRecursively(root: TreeNode) -> List[int]:
         result += [root.val]
     return result
 
-# Almost the same as preorderTraversal()
+# Almost the same as preorderTraversal(), just two stack.append() execute in different order and result is reversed
 def postorderTraversal(root: TreeNode) -> List[int]:
     if root is None: return []
 
@@ -110,7 +114,7 @@ def levelOrder(root: TreeNode) -> List[List[int]]:
     if root is None: return []
 
     root.level, current_level = 1, 1
-    result, queue = [], deque([root])
+    result, queue = [], deque([root]) # It's queue, FIFO
     level_nodes = []  # Record the nodes for each level
 
     while len(queue) > 0:
@@ -132,7 +136,7 @@ def levelOrder(root: TreeNode) -> List[List[int]]:
             cur_node.right.level = current_level + 1
             queue.append(cur_node.right)
 
-    result.append(level_nodes)
+    result.append(level_nodes) # Don't forget the last leaves
     return result
 
 ###########

@@ -44,7 +44,7 @@ def preorderTraversalRecursively(root: TreeNode) -> List[int]:
 def preorderTraversal(root: TreeNode) -> List[int]:
     if not root: return []
     
-    result, stack = [], [root]
+    result, stack = [], [root] # Initialize a stack, FILO
     while stack:
         cur_node = stack.pop() # Access root
         result.append(cur_node.val)
@@ -69,7 +69,7 @@ def inorderTraversalRecursively(root: TreeNode) -> List[int]:
 def inorderTraversal(root: TreeNode) -> List[int]:
     if not root: return []
 
-    result, stack = [], []
+    result, stack = [], [] # Initialize a stack, FILO
     while root or stack:
         if root:
             stack.append(root)
@@ -96,7 +96,7 @@ def postorderTraversalRecursively(root: TreeNode) -> List[int]:
 def postorderTraversal(root: TreeNode) -> List[int]:
     if root is None: return []
 
-    result, stack = [], [root]
+    result, stack = [], [root] # Initialize a stack, FILO
     while stack:
         cur_node = stack.pop()
         result.append(cur_node.val)
@@ -114,7 +114,7 @@ def levelOrder(root: TreeNode) -> List[List[int]]:
     if root is None: return []
 
     root.level, current_level = 1, 1
-    result, queue = [], deque([root]) # It's queue, FIFO
+    result, queue = [], deque([root]) # Initialize a queue, FIFO
     level_nodes = []  # Record the nodes for each level
 
     while len(queue) > 0:

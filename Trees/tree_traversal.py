@@ -1,9 +1,10 @@
 
 """
 Tree Traversal
-Pre-order: Root, Left, Right
-In-order: Left, Root, Right
-Post-order: Left, Right, Root
+Depth-first:
+    Pre-order: Root, Left, Right
+    In-order: Left, Root, Right
+    Post-order: Left, Right, Root
 Level-order(Breadth first):
 
 URL: https://charlesliuyx.github.io/2018/10/22/%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
@@ -32,7 +33,13 @@ class TreeNode:
         self.right = right
         self.level = level
 
-# Root, Left, Right
+    def get_children(self):
+        return [self.left, self.right]
+
+    def get_rev_children(self):
+        return [self.right, self.left]
+
+    # Root, Left, Right
 def preorderTraversalRecursively(root: TreeNode) -> List[int]:
     result = []
     if root:
@@ -55,6 +62,21 @@ def preorderTraversal(root: TreeNode) -> List[int]:
         if cur_node.left: # Then put left node, so when pop stack left will be visited at first
             stack.append(cur_node.left)
             
+    return result
+
+# preorder Traversal
+def depthFirstTraversal(root):
+    result, queue = [], [root]  # Initialize a queue, FIFO
+
+    while queue:
+        cur_node = queue[0]
+        result.append(cur_node.val)
+
+        queue = queue[1:]
+        for child in cur_node.get_rev_children():
+            if child != None:
+                queue.insert(0, child)
+
     return result
 
 # Left, Root, Right
@@ -109,6 +131,20 @@ def postorderTraversal(root: TreeNode) -> List[int]:
 
     return result[::-1]
 
+def breadthFirstTraversal(root):
+    result, queue = [], [root] # Initialize a queue, FIFO
+
+    while queue:
+        cur_node = queue[0]
+        result.append(cur_node.val)
+
+        queue = queue[1:]
+        for child in cur_node.get_children():
+            if child != None:
+                queue.append(child)
+
+    return result
+
 # Breadth first
 def levelOrder(root: TreeNode) -> List[List[int]]:
     if root is None: return []
@@ -161,6 +197,8 @@ print(inorderTraversal(root))
 print(postorderTraversalRecursively(root))
 print(postorderTraversal(root))
 print(levelOrder(root))
+print(breadthFirstTraversal(root))
+print(depthFirstTraversal(root))
 
 # Test 2
 # Correct result =>
@@ -182,3 +220,5 @@ print(inorderTraversal(root))
 print(postorderTraversalRecursively(root))
 print(postorderTraversal(root))
 print(levelOrder(root))
+print(breadthFirstTraversal(root))
+print(depthFirstTraversal(root))

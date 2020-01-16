@@ -7,9 +7,13 @@ Depth-first:
     Post-order: Left, Right, Root
 Level-order(Breadth first):
 
-URL: https://charlesliuyx.github.io/2018/10/22/%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
-(【直观算法】二叉树遍历算法总结)
-URL: https://gist.github.com/thinkphp/1439668
+URLs:
+【直观算法】二叉树遍历算法总结
+https://charlesliuyx.github.io/2018/10/22/%E3%80%90%E7%9B%B4%E8%A7%82%E7%AE%97%E6%B3%95%E3%80%91%E6%A0%91%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C/
+Breadth-First Traversal.py
+https://gist.github.com/thinkphp/1439668
+SIMPLE BREADTH-FIRST, DEPTH-FIRST TREE TRAVERSAL (PYTHON RECIPE)
+http://code.activestate.com/recipes/579138-simple-breadth-first-depth-first-tree-traversal/
 =========================================
 Solution
 

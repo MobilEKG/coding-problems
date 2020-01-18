@@ -158,56 +158,56 @@ def levelOrder(root: TreeNode) -> List[List[int]]:
 ###########
 # Testing #
 ###########
+if __name__ == "__main__":
+    # Test 1
+    # Correct result =>
+    '''
+     5
+    / \
+    1  4
+      / \
+     3   6
+    '''
+    root = TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
 
-# Test 1
-# Correct result =>
-'''
- 5
-/ \
-1  4
-  / \
- 3   6
-'''
-root = TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
+    print(preorderTraversalRecursively(root))
+    print(preorderTraversal(root))
+    print(inorderTraversalRecursively(root))
+    print(inorderTraversal(root))
+    print(postorderTraversalRecursively(root))
+    print(postorderTraversal(root))
+    print(levelOrder(root))
+    print(breadthFirstTraversal(root))
 
-print(preorderTraversalRecursively(root))
-print(preorderTraversal(root))
-print(inorderTraversalRecursively(root))
-print(inorderTraversal(root))
-print(postorderTraversalRecursively(root))
-print(postorderTraversal(root))
-print(levelOrder(root))
-print(breadthFirstTraversal(root))
+    # Test 2
+    # Correct result =>
+    '''
+      1
+     / \
+     2  3
+    / \  \
+    4  5  6
+      / \
+      7  8
+    '''
+    root = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5, TreeNode(7), TreeNode(8))), TreeNode(3, None, TreeNode(6)))
 
-# Test 2
-# Correct result =>
-'''
-  1
- / \
- 2  3
-/ \  \
-4  5  6
-  / \
-  7  8
-'''
-root = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5, TreeNode(7), TreeNode(8))), TreeNode(3, None, TreeNode(6)))
+    print(preorderTraversalRecursively(root))
+    print(preorderTraversal(root))
+    print(inorderTraversalRecursively(root))
+    print(inorderTraversal(root))
+    print(postorderTraversalRecursively(root))
+    print(postorderTraversal(root))
+    print(levelOrder(root))
+    print(breadthFirstTraversal(root))
 
-print(preorderTraversalRecursively(root))
-print(preorderTraversal(root))
-print(inorderTraversalRecursively(root))
-print(inorderTraversal(root))
-print(postorderTraversalRecursively(root))
-print(postorderTraversal(root))
-print(levelOrder(root))
-print(breadthFirstTraversal(root))
-
-# Test 3
-# Correct result =>
-print(preorderTraversalRecursively(None))
-print(preorderTraversal(None))
-print(inorderTraversalRecursively(None))
-print(inorderTraversal(None))
-print(postorderTraversalRecursively(None))
-print(postorderTraversal(None))
-print(levelOrder(None))
-print(breadthFirstTraversal(None))
+    # Test 3
+    # Correct result =>
+    print(preorderTraversalRecursively(None))
+    print(preorderTraversal(None))
+    print(inorderTraversalRecursively(None))
+    print(inorderTraversal(None))
+    print(postorderTraversalRecursively(None))
+    print(postorderTraversal(None))
+    print(levelOrder(None))
+    print(breadthFirstTraversal(None))

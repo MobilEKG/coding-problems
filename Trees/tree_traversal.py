@@ -130,9 +130,9 @@ def breadthFirstTraversal(root):
 def levelOrder(root: TreeNode) -> List[List[int]]:
     if root is None: return []
 
-    current_level = 1
     result = []
-    queue = [(root, 1)]  # Initialize a queue(FIFO) & level
+    current_level = 1
+    queue = [(root, current_level)]  # Initialize a queue(FIFO) & level
     level_nodes = []  # Record the nodes for each level
 
     while len(queue) > 0:

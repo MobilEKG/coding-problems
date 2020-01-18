@@ -118,10 +118,9 @@ def breadthFirstTraversal(root):
     result, queue = [], [root] # Initialize a queue, FIFO
 
     while queue and queue[0]:
-        cur_node = queue[0]
+        cur_node = queue.pop(0)
         result.append(cur_node.val)
 
-        queue = queue[1:]
         for child in cur_node.get_children():
             if child != None:
                 queue.append(child)

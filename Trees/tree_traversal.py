@@ -30,12 +30,11 @@ from typing import Dict, List
 
 # from tree_helpers import TreeNode
 class TreeNode:
-    def __init__(self, val, left=None, right=None, level=None):
+    def __init__(self, val, left=None, right=None):
         '''Definition for binary tree.'''
         self.val = val
         self.left = left
         self.right = right
-        self.level = level
 
     def get_children(self):
         return [self.left, self.right]
@@ -131,14 +130,15 @@ def breadthFirstTraversal(root):
 def levelOrder(root: TreeNode) -> List[List[int]]:
     if root is None: return []
 
-    root.level, current_level = 1, 1
-    result, queue = [], deque([root]) # Initialize a queue, FIFO
+    current_level = 1
+    result = []
+    queue = [(root, 1)]  # Initialize a queue(FIFO) & level
     level_nodes = []  # Record the nodes for each level
 
     while len(queue) > 0:
-        cur_node = queue.popleft()
+        cur_node, level = queue.pop(0)
 
-        if (cur_node.level > current_level):
+        if (level > current_level):
             current_level += 1
 
             result.append(level_nodes)
@@ -147,12 +147,10 @@ def levelOrder(root: TreeNode) -> List[List[int]]:
         level_nodes.append(cur_node.val)
 
         if cur_node.left:
-            cur_node.left.level = current_level + 1
-            queue.append(cur_node.left)
+            queue.append((cur_node.left, current_level + 1))
 
         if cur_node.right:
-            cur_node.right.level = current_level + 1
-            queue.append(cur_node.right)
+            queue.append((cur_node.right, current_level + 1))
 
     result.append(level_nodes) # Don't forget the last leaves
     return result

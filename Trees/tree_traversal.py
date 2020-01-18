@@ -53,10 +53,8 @@ def preorderTraversalRecursively(root: TreeNode) -> List[int]:
     return result
 
 def preorderTraversal(root: TreeNode) -> List[int]:
-    if not root: return []
-    
     result, stack = [], [root] # Initialize a stack, FILO
-    while stack:
+    while stack and stack[0]:
         cur_node = stack.pop() # Access root
         result.append(cur_node.val)
 
@@ -69,14 +67,13 @@ def preorderTraversal(root: TreeNode) -> List[int]:
     return result
 
 # preorder Traversal
-def depthFirstTraversal(root):
+def preorderDepthFirstTraversal(root: TreeNode) -> List[int]:
     result, queue = [], [root]  # Initialize a queue, FIFO
 
     while queue:
-        cur_node = queue[0]
+        cur_node = queue.pop(0) # Remove the first element
         result.append(cur_node.val)
 
-        queue = queue[1:]
         for child in cur_node.get_rev_children():
             if child != None:
                 queue.insert(0, child)
@@ -93,8 +90,6 @@ def inorderTraversalRecursively(root: TreeNode) -> List[int]:
     return result
 
 def inorderTraversal(root: TreeNode) -> List[int]:
-    if not root: return []
-
     result, stack = [], [] # Initialize a stack, FILO
     while root or stack:
         if root:
@@ -102,7 +97,7 @@ def inorderTraversal(root: TreeNode) -> List[int]:
 
             root = root.left
         else:
-            root = stack.pop()
+            root = stack.pop() # Remove the last element
             result.append(root.val)
 
             root = root.right
@@ -196,13 +191,15 @@ root = TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))
 
 print(preorderTraversalRecursively(root))
 print(preorderTraversal(root))
+print(preorderDepthFirstTraversal(root))
 print(inorderTraversalRecursively(root))
 print(inorderTraversal(root))
 print(postorderTraversalRecursively(root))
 print(postorderTraversal(root))
 print(levelOrder(root))
 print(breadthFirstTraversal(root))
-print(depthFirstTraversal(root))
+
+print(preorderTraversal(None))
 
 # Test 2
 # Correct result =>
@@ -219,10 +216,10 @@ root = TreeNode(1, TreeNode(2, TreeNode(4), TreeNode(5, TreeNode(7), TreeNode(8)
 
 print(preorderTraversalRecursively(root))
 print(preorderTraversal(root))
+print(preorderDepthFirstTraversal(root))
 print(inorderTraversalRecursively(root))
 print(inorderTraversal(root))
 print(postorderTraversalRecursively(root))
 print(postorderTraversal(root))
 print(levelOrder(root))
 print(breadthFirstTraversal(root))
-print(depthFirstTraversal(root))
